@@ -59,7 +59,7 @@ nextButton.addEventListener("click", showNextTestimonial);
 // Initial testimonial display
 updateTestimonial();
 
-//menu
+//menu hamburger 
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
@@ -77,59 +77,81 @@ menuItems.forEach(item => {
 
 //stats
 
-function startCounterAnimation() {
-  const totalCustomers = document.getElementById('totalCustomers');
-  const totalClients = document.getElementById('totalClients');
-  const totalProjects = document.getElementById('totalProjects');
+document.addEventListener("DOMContentLoaded", () => {
+  function counter(id, start, end, duration) {
+    let obj = document.getElementById(id),
+      current = start,
+      range = end - start,
+      increment = end > start ? 1 : -1,
+      step = Math.abs(Math.floor(duration / range)),
+      timer = setInterval(() => {
+        current += increment;
+        obj.textContent = current;
+        if (current == end) {
+          clearInterval(timer);
+        }
+      }, step);
+  }
+  counter("count1", 0, 400, 3000);
+  counter("count2", 100, 50, 2500);
+  counter("count3", 0, 40, 3000);
+});
 
-  const animationDuration = 3000;
-  const startValue = 0;
-  const endValueCustomers = 5000; // Replace with your desired number
-  const endValueClients = 13; // Replace with your desired number
-  const endValueProjects = 100; // Replace with your desired number
-  const frameRate = 24;
-  const frameDuration = Math.floor(animationDuration / frameRate);
-  const stepValueCustomers = Math.ceil((endValueCustomers - startValue) / frameRate);
-  const stepValueClients = Math.ceil((endValueClients - startValue) / frameRate);
-  const stepValueProjects = Math.ceil((endValueProjects - startValue) / frameRate);
+// //stats
 
-  let currentValueCustomers = startValue;
-  let currentValueClients = startValue;
-  let currentValueProjects = startValue;
+// function startCounterAnimation() {
+//   const totalCustomers = document.getElementById('totalCustomers');
+//   const totalClients = document.getElementById('totalClients');
+//   const totalProjects = document.getElementById('totalProjects');
 
-  const animateCounter = () => {
-    if (currentValueCustomers <= endValueCustomers) {
-      totalCustomers.textContent = currentValueCustomers;
-      currentValueCustomers += stepValueCustomers;
-    }
-    if (currentValueClients <= endValueClients) {
-      totalClients.textContent = currentValueClients;
-      currentValueClients += stepValueClients;
-    }
-    if (currentValueProjects <= endValueProjects) {
-      totalProjects.textContent = currentValueProjects;
-      currentValueProjects += stepValueProjects;
-    }
+//   const animationDuration = 3000;
+//   const startValue = 0;
+//   const endValueCustomers = 5000; // Replace with your desired number
+//   const endValueClients = 13; // Replace with your desired number
+//   const endValueProjects = 100; // Replace with your desired number
+//   const frameRate = 24;
+//   const frameDuration = Math.floor(animationDuration / frameRate);
+//   const stepValueCustomers = Math.ceil((endValueCustomers - startValue) / frameRate);
+//   const stepValueClients = Math.ceil((endValueClients - startValue) / frameRate);
+//   const stepValueProjects = Math.ceil((endValueProjects - startValue) / frameRate);
 
-    if (
-      currentValueCustomers <= endValueCustomers ||
-      currentValueClients <= endValueClients ||
-      currentValueProjects <= endValueProjects
-    ) {
-      requestAnimationFrame(animateCounter);
-    }
-  };
+//   let currentValueCustomers = startValue;
+//   let currentValueClients = startValue;
+//   let currentValueProjects = startValue;
 
-  // Check if the section is in view
-  const section = document.querySelector('.container');
-  const sectionObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter();
-        sectionObserver.unobserve(entry.target);
-      }
-    });
-  });
-  sectionObserver.observe(section);
-}
-startCounterAnimation();
+//   const animateCounter = () => {
+//     if (currentValueCustomers <= endValueCustomers) {
+//       totalCustomers.textContent = currentValueCustomers;
+//       currentValueCustomers += stepValueCustomers;
+//     }
+//     if (currentValueClients <= endValueClients) {
+//       totalClients.textContent = currentValueClients;
+//       currentValueClients += stepValueClients;
+//     }
+//     if (currentValueProjects <= endValueProjects) {
+//       totalProjects.textContent = currentValueProjects;
+//       currentValueProjects += stepValueProjects;
+//     }
+
+//     if (
+//       currentValueCustomers <= endValueCustomers ||
+//       currentValueClients <= endValueClients ||
+//       currentValueProjects <= endValueProjects
+//     ) {
+//       requestAnimationFrame(animateCounter);
+//     }
+//   };
+
+//   // Check if the section is in view
+//   const section = document.querySelector('.container');
+//   const sectionObserver = new IntersectionObserver(entries => {
+//     entries.forEach(entry => {
+//       if (entry.isIntersecting) {
+//         animateCounter();
+//         sectionObserver.unobserve(entry.target);
+//       }
+//     });
+//   });
+//   sectionObserver.observe(section);
+// }
+// startCounterAnimation();

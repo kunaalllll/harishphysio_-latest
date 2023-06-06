@@ -1,14 +1,16 @@
 *{
     padding: 0px;
     margin: 0px;
+    box-sizing: border-box;
 }
-/* .why-container {
+
+.why-container {
   display: flex;
 }
 
 .container>div {
   flex: 1;
-} */
+}
 
 .container>div>.why-img {
   width: 100%;
